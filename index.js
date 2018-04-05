@@ -91,7 +91,7 @@ class FloatLabelTextField extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.hasOwnProperty('value') && newProps.value !== this.state.text) {
+        if (newProps.hasOwnProperty('value') /* && newProps.value !== this.state.text */) {
             this.setState({ text: newProps.value });
         }
     }
