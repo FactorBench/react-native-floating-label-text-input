@@ -111,46 +111,54 @@ class FloatLabelTextField extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <View
-                    style={[
-                        styles.viewContainer,
-                        {
-                            paddingTop: this.props.contentInset.top,
-                            paddingLeft: this.props.contentInset.left,
-                            paddingRight: this.props.contentInset.right,
-                            paddingBottom: this.props.contentInset.bottom,
-                        }
-                    ]}>
-                    <View style={[styles.fieldContainer, this.withBorder()]}>
-                        <FloatingLabel visible={this.state.text}>
-                            {this.renderIcon()}
-                            <Text style={[styles.fieldLabel, this.props.floatingLabelStyle, this.labelStyle()]}>{this.placeholderValue()}</Text>
-                        </FloatingLabel>
-                        <TextFieldHolder
-                            withValue={this.state.text}
-                            marginAnim={this.props.marginAnim}
-                            multiline={this.props.multiline}
-                            marginMultiline={this.props.marginMultiline}
+            <View
+                style={[
+                    styles.container,
+                    {
+                        paddingTop: this.props.contentInset.top,
+                        paddingLeft: this.props.contentInset.left,
+                        paddingRight: this.props.contentInset.right,
+                        paddingBottom: this.props.contentInset.bottom,
+                    },
+                ]}
+            >
+                <View style={[styles.container, this.withBorder()]}>
+                    <FloatingLabel visible={this.state.text}>
+                        {this.renderIcon()}
+                        <Text
+                            style={[
+                                styles.fieldLabel,
+                                this.props.floatingLabelStyle,
+                                this.labelStyle()
+                            ]}
+                            numberOfLines={1}
                         >
-                            <TextInput
-                                {...this.props}
-                                ref="input"
-                                // underlineColorAndroid="transparent"
-                                style={[
-                                    styles.valueText,
-                                    this.props.textStyle,
-                                    this.props.icon ? { marginLeft: 41 } : null,
-                                ]}
-                                defaultValue={this.props.defaultValue}
-                                value={this.state.text}
-                                maxLength={this.props.maxLength}
-                                onFocus={() => this.setFocus()}
-                                onBlur={() => this.unsetFocus()}
-                                onChangeText={value => this.setText(value)}
-                            />
-                        </TextFieldHolder>
-                    </View>
+                            {this.placeholderValue()}
+                        </Text>
+                    </FloatingLabel>
+                    <TextFieldHolder
+                        withValue={this.state.text}
+                        marginAnim={this.props.marginAnim}
+                        multiline={this.props.multiline}
+                        marginMultiline={this.props.marginMultiline}
+                    >
+                        <TextInput
+                            {...this.props}
+                            ref="input"
+                            // underlineColorAndroid="transparent"
+                            style={[
+                                styles.valueText,
+                                this.props.textStyle,
+                                this.props.icon ? { marginLeft: 41 } : null,
+                            ]}
+                            defaultValue={this.props.defaultValue}
+                            value={this.state.text}
+                            maxLength={this.props.maxLength}
+                            onFocus={() => this.setFocus()}
+                            onBlur={() => this.unsetFocus()}
+                            onChangeText={value => this.setText(value)}
+                        />
+                    </TextFieldHolder>
                 </View>
             </View>
         );
@@ -223,25 +231,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    viewContainer: {
-        flex: 1,
-        flexDirection: 'row',
-    },
     floatingLabel: {
         flexDirection: 'row',
         alignItems: 'center',
         position: 'absolute',
         top: 0,
         left: 0,
+        right: 0,
     },
     fieldLabel: {
         fontSize: 16,
         color: '#B1B1B1',
-    },
-    fieldContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        position: 'relative',
     },
     withBorder: {
         borderBottomWidth: 1 / 2,
